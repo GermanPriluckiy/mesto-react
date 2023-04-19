@@ -1,70 +1,64 @@
-import React from 'react';
+import React from "react";
 
-import Footer from './Footer';
-import Header from './Header';
-import Main from './Main'
-import PopupWithForm from './PopupWithForm';
-import ImagePopup from './ImagePopup';
+import Footer from "./Footer";
+import Header from "./Header";
+import Main from "./Main";
+import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
-
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-
   const [selectedCard, setSelectedCard] = React.useState(null);
-
-  /*console.log(selectedCard);*/
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
-}
+  }
 
-function handleEditAvatarClick() {
-  setIsEditAvatarPopupOpen(true);
-}
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
 
-function handleAddPlaceClick() {
-  setIsAddPlacePopupOpen(true);
-}
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true);
+  }
 
-
-function closeAllPopups() {
-  setIsEditProfilePopupOpen(false);
-  setIsEditAvatarPopupOpen(false);
-  setIsAddPlacePopupOpen(false);
-  setSelectedCard(null);
-}
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setSelectedCard(null);
+  }
 
   return (
     <>
-
       <Header />
 
-      <Main 
-      onEditProfile={handleEditProfileClick}
-      onAddPlace={handleAddPlaceClick}
-      onEditAvatar={handleEditAvatarClick}
-      onCardClick={setSelectedCard}/>
+      <Main
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
+        onCardClick={setSelectedCard}
+      />
+
       <ImagePopup
         card={selectedCard}
-        name='view-card'
-        opacity='high'
-        onClose={closeAllPopups} />
-      
+        name="view-card"
+        opacity="high"
+        onClose={closeAllPopups}
+      />
 
       <Footer />
 
       <PopupWithForm
-        name='edit-profile'
-        opacity='low'
-        title='Редактировать профиль'
-        buttonTitle='Сохранить'
+        name="edit-profile"
+        opacity="low"
+        title="Редактировать профиль"
+        buttonTitle="Сохранить"
         isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}>
-
+        onClose={closeAllPopups}
+      >
         <input
           type="text"
           lang="ru"
@@ -74,12 +68,10 @@ function closeAllPopups() {
           className="popup__input"
           required
           minLength="2"
-          maxLength="40" />
+          maxLength="40"
+        />
 
-        <span
-          className="popup__error"
-          id="input-name-error">
-        </span>
+        <span className="popup__error" id="input-name-error"></span>
 
         <input
           type="text"
@@ -90,22 +82,19 @@ function closeAllPopups() {
           className="popup__input"
           required
           minLength="2"
-          maxLength="200" />
+          maxLength="200"
+        />
 
-        <span
-          className="popup__error"
-          id="input-description-error">
-        </span>
-
+        <span className="popup__error" id="input-description-error"></span>
       </PopupWithForm>
       <PopupWithForm
-        name='add-card'
-        opacity='low'
-        title='Новое место'
-        buttonTitle='Создать'
+        name="add-card"
+        opacity="low"
+        title="Новое место"
+        buttonTitle="Создать"
         isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}>
-
+        onClose={closeAllPopups}
+      >
         <input
           type="text"
           lang="ru"
@@ -115,12 +104,9 @@ function closeAllPopups() {
           className="popup__input"
           required
           minLength="2"
-          maxLength="30" />
-        <span
-          className="popup__error"
-          id="input-place-error">
-
-        </span>
+          maxLength="30"
+        />
+        <span className="popup__error" id="input-place-error"></span>
         <input
           type="url"
           lang="ru"
@@ -128,20 +114,18 @@ function closeAllPopups() {
           placeholder="Ссылка на картинку"
           id="input-url"
           className="popup__input"
-          required />
-        <span
-          className="popup__error"
-          id="input-url-error">
-        </span>
+          required
+        />
+        <span className="popup__error" id="input-url-error"></span>
       </PopupWithForm>
       <PopupWithForm
-        name='edit-avatar'
-        opacity='low'
-        title='Обновить аватар'
-        buttonTitle='Сохранить'
+        name="edit-avatar"
+        opacity="low"
+        title="Обновить аватар"
+        buttonTitle="Сохранить"
         isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}>
-
+        onClose={closeAllPopups}
+      >
         <input
           type="url"
           lang="ru"
@@ -149,25 +133,19 @@ function closeAllPopups() {
           placeholder="Ссылка на аватар"
           id="input-avatar-url"
           className="popup__input"
-          required />
+          required
+        />
 
-        <span
-          className="popup__error"
-          id="input-avatar-url-error">
-
-        </span>
+        <span className="popup__error" id="input-avatar-url-error"></span>
       </PopupWithForm>
       <PopupWithForm
-        name='delete-card'
-        opacity='low'
-        title='Вы уверены?'
-        buttonTitle='Да'
-        onClose={closeAllPopups}>
-
-      </PopupWithForm>
-
-   </>
-
+        name="delete-card"
+        opacity="low"
+        title="Вы уверены?"
+        buttonTitle="Да"
+        onClose={closeAllPopups}
+      ></PopupWithForm>
+    </>
   );
 }
 
