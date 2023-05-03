@@ -49,6 +49,7 @@ class Api {
       return this._getResponseData(res);
     });
   }
+  
   //Добавление новой карточки
   addNewCard(cardName, cardLink) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -63,23 +64,6 @@ class Api {
     });
   }
   //Функция лайка
-  likeCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
-  }
-
-  dislikeCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
-  }
 
   changeLikeCardStatus(id, isLiked) {
     if (isLiked) {
