@@ -1,25 +1,12 @@
 import React from "react";
-import { api } from "../utils/Api";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, cards }) {
+  const currentUser = React.useContext(CurrentUserContext);
 
-  React.useEffect(() => {
-    Promise.all([api.getUserInfoFromServer(), api.getInitialCards()])
-      .then(([userInfo, cardList]) => {
-        setUserName(userInfo.name);
-        setUserDescription(userInfo.about);
-        setUserAvatar(userInfo.avatar);
-        setCards(cardList);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  
+
 
   return (
     <main className="content">
@@ -29,17 +16,17 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
             <img
               className="profile__avatar"
               alt="Фотография пользователя"
-              src={userAvatar}
+              src={currentUser.avatar}
             />
           </div>
           <div className="profile__info">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
             <button
               className="profile__edit-btn"
               type="button"
               onClick={onEditProfile}
             ></button>
-            <p className="profile__description">{userDescription}</p>
+            <p className="profile__description">{currentUser.about}</p>
           </div>
         </div>
         <button className="add-btn" type="button" onClick={onAddPlace}></button>
@@ -50,9 +37,12 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
             <Card
               link={card.link}
               name={card.name}
-              likes={card.likes.length}
+              likes={card.likes}
               key={card._id}
               onClick={onCardClick}
+              owner={card.owner._id}
+              id= {card._id}
+              onCardLike={onCardLike}
             />
           );
         })}
