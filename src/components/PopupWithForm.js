@@ -6,7 +6,7 @@ function PopupWithForm({
   buttonTitle,
   isOpen,
   onClose,
-  onSubmit
+  onSubmit,
 }) {
   return (
     <div
