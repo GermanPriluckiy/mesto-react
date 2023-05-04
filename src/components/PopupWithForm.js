@@ -1,3 +1,5 @@
+import React from "react";
+
 function PopupWithForm({
   name,
   opacity,
@@ -21,7 +23,6 @@ function PopupWithForm({
           id={name}
           name={name}
           method="post"
-          noValidate
           onSubmit={onSubmit}
         >
           <h2 className="popup__form-title">{title}</h2>

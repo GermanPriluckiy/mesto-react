@@ -54,6 +54,9 @@ function App() {
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(id, isLiked).then((newCard) => {
       setCards((state) => state.map((c) => (c._id === id ? newCard : c)));
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 
@@ -127,7 +130,7 @@ function App() {
     api
       .deleteCard(id)
       .then((res) => {
-        setCards(cards.filter((card) => card._id !== id));
+        setCards((state) => state.filter((c) => c._id !== id));
         console.log(res);
       })
       .catch((err) => {
